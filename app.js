@@ -3,6 +3,7 @@
 
 // import "./models/user.js"; // load
 // import authRouter from "./routes/auth.js";
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
