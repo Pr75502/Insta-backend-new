@@ -11,15 +11,15 @@
 
 
 
-const express = require('express');
+import express from 'express';
 const authRouter =  express.Router()
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const User = mongoose.model("User");
-const bcrypt = require("bcrypt");
-const { v4:uuid4 } = require('uuid'); 
-const isLoggedIn = require("../middlewares/isLoggedIn.js");
-// const jwt = require("jsonwebtoken")
-const sendResponse = require('../utilities/response');
+import bcrypt from "bcrypt";
+import { v4 as uuid4 } from 'uuid'; 
+import isLoggedIn from "../middlewares/isLoggedIn.js";
+// import jwt from "jsonwebtoken"
+import sendResponse from '../utilities/response.js';
 
 
 
@@ -50,19 +50,19 @@ const zukuMessage = [
 
 
 authRouter.post('/signup', async (req, res) => {
-   const { name, email, password } = req.body;
+   const { name, email, password, username } = req.body;
  
    // Check if all fields are filled
-   if (!name || !email || !password) {
+   if (!name || !email || !password || !username) {
      return sendResponse(res, false, 'Please add all the fields', null,400);
    }
  
    try {
      // Check if user email already exists in database
-     const existingUser = await User.findOne({ email });
+     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
  
      if (existingUser) {
-       return sendResponse(res, false, 'User already exists with that email', null, 400);
+       return sendResponse(res, false, 'User already exists with that email or username', null, 400);
      }
  
      // Hash the password
@@ -72,6 +72,7 @@ authRouter.post('/signup', async (req, res) => {
      let newUser = new User({
        name,
        email,
+       username,
        password: hashedPassword
      });
  
@@ -153,5 +154,5 @@ authRouter.delete('/logout', isLoggedIn, async (req, res) => {
 
 
 
-module.exports = authRouter;
+export default authRouter;
 

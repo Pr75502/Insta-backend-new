@@ -1,10 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
 const commentRouter = express.Router();
 const Comment = mongoose.model('Comment');
 const Post = mongoose.model('Post');
-const isLoggedIn = require('../middlewares/isLoggedIn');
-const sendResponse = require('../utilities/response');
+import isLoggedIn from '../middlewares/isLoggedIn.js';
+import sendResponse from '../utilities/response.js';
 
 // Create comment
 commentRouter.post('/create/:postId', isLoggedIn, async (req, res) => {
@@ -73,4 +73,4 @@ commentRouter.delete('/:commentId', isLoggedIn, async (req, res) => {
     }
 });
 
-module.exports = commentRouter;
+export default commentRouter;

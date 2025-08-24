@@ -3,20 +3,21 @@
 
 // import "./models/user.js"; // load
 // import authRouter from "./routes/auth.js";
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
+import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
+import mongoose from "mongoose";
 
-require("./models/user.js"); // load
-require("./models/post.js"); // load
-require("./models/comment.js"); // load
+import "./models/user.js"; // load
+import "./models/post.js"; // load
+import "./models/comment.js"; // load
 
-const authRouter = require("./routes/auth.js");
-const postRouter = require("./routes/post.js");
-const commentRouter = require("./routes/comment.js");
-const userRouter = require("./routes/user.js");
+import authRouter from "./routes/auth.js";
+import postRouter from "./routes/post.js";
+import commentRouter from "./routes/comment.js";
+import userRouter from "./routes/user.js";
 
-const cors = require("cors");
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 5000

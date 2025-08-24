@@ -1,11 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
 const postRouter = express.Router();
 const Post = mongoose.model('Post');
-const isLoggedIn = require('../middlewares/isLoggedIn');  
-const sendResponse = require('../utilities/response');
-// import parser from '../utilities/upload';
-const parser = require('../utilities/upload');
+import isLoggedIn from '../middlewares/isLoggedIn.js';
+import sendResponse from '../utilities/response.js';
+import parser from '../utilities/upload.js';
 
 
 postRouter.post("/upload",parser.single('file'), async (req, res)=>{
@@ -260,4 +259,4 @@ postRouter.post('/unlike/:id', isLoggedIn, async (req, res) => {
 
 
 
-module.exports = postRouter;
+export default postRouter;

@@ -1,9 +1,9 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
 const userRouter = express.Router();
 const User = mongoose.model('User');
-const isLoggedIn = require('../middlewares/isLoggedIn');
-const sendResponse = require('../utilities/response');
+import isLoggedIn from '../middlewares/isLoggedIn.js';
+import sendResponse from '../utilities/response.js';
 
 // Get user profile
 userRouter.get('/profile/:userId', isLoggedIn, async (req, res) => {
@@ -34,4 +34,4 @@ userRouter.put('/profile', isLoggedIn, async (req, res) => {
     }
 });
 
-module.exports = userRouter;
+export default userRouter;

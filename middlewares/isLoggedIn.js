@@ -1,7 +1,7 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
 const User = mongoose.model("User");
-const sendResponse = require('../utilities/response');
+import sendResponse from '../utilities/response.js';
 
 
 const isLoggedIn = async (req, res, next) => {
@@ -32,4 +32,4 @@ const isLoggedIn = async (req, res, next) => {
     }
   };
 
-module.exports = isLoggedIn;
+export default isLoggedIn;
